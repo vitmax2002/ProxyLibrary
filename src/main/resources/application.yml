@@ -1,0 +1,73 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/coda2
+    username: postgres
+    password: postgres
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        temp:
+          use_jdbc_metadata_defaults: false
+
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+rabbitmq:
+  queue: libraryQueue2
+  exchange: libraryExchange
+  key: libraryKey2
+
+
+minio:
+  bucketName: victore
+  defaultFolder: /
+  accessKey: minioadmin
+  secretKey: minioadmin
+  minio-url: http://127.0.0.1:9000
+
+logging:
+  level:
+    org.springframework.web: ERROR
+    com.esempla.proxy: DEBUG
+  pattern:
+    console: ' %black(%d{ISO8601}) %highlight(%-5level) [%red(%t)] %green(%C{1}): %msg%n%throwable'
+    file: '%d %p %C{1} [%t] %m%n'
+  file:
+    name: ${user.home}/spring-boot-loggerProxy.log
+
+server:
+  port: 8081
+  ssl:
+#    key-alias: localhost                    #library-https
+#    #key-store-type: JKS
+#    key-password: 13047804kl                     #parola
+#    enabled: true
+#    key-store: /home/coda/Desktop/keystore.jks      #classpath:keystore.jks
+#    trust-store: /home/coda/Desktop/truststore.jks
+#    trust-store-password: 13047804kl
+#    client-auth: need
+
+
+    key-store: /home/coda/Desktop/keystore.jks
+    key-store-password: 13047804kl
+    key-alias: localhost
+    key-password: 13047804kl
+    enabled: true
+    trust-store: /home/coda/Desktop/truststore.jks
+    trust-store-password: 13047804kl
+#    certificate: /home/coda/Desktop/clientBob.crt
+#    client-auth: need
+name:
+  service:
+    url: https://localhost:8080/api/v1
+
